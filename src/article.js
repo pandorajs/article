@@ -40,7 +40,7 @@ define(function(require, exports, module) {
       }
 
       if (!this.fontSizeTarget) {
-        this.fontSizeTarget = this.$('.content, .summary');
+        this.fontSizeTarget = this.element;
       }
 
       $(item).addClass('current')

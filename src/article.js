@@ -29,7 +29,16 @@ define(function(require, exports, module) {
     setup: function() {
       this.render();
 
-      this.initPagination();
+      this.indentParam();
+
+      this.setSwitcher();
+    },
+
+    // IE 6 下 p 缩进
+    indentParam: function() {
+      if (!!window.ActiveXObject && !window.XMLHttpRequest) {
+        this.$('.content > p, .content > div > p').addClass('p-root');
+      }
     },
 
     setFontSize: function(item) {
@@ -47,12 +56,11 @@ define(function(require, exports, module) {
           .siblings('.current').removeClass('current');
 
       this.fontSizeTarget.css({
-        'font-size': fontSize + 'px'/*,
-        'line-height': Math.ceil(fontSize * 1.8) + 'px'*/
+        'font-size': fontSize + 'px'
       });
     },
 
-    initPagination: function() {
+    setSwitcher: function() {
       this.pageSwitcher = this.$('.mod-page-switcher');
       this.pageSwitcher.before('<div class="mod-page-switcher-tip">(支持键盘 &larr; 和 &rarr; 分页)</div>');
 
